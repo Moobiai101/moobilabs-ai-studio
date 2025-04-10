@@ -6,7 +6,6 @@ import { Label } from '@/components/ui/label'
 import { createClientSupabaseClient } from '@/lib/supabase/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -20,7 +19,6 @@ const signupSchema = z.object({
 type SignupFormValues = z.infer<typeof signupSchema>
 
 export function SignupForm() {
-  const router = useRouter()
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [verifyEmailSent, setVerifyEmailSent] = useState<boolean>(false)
@@ -99,7 +97,7 @@ export function SignupForm() {
         <div className="text-center mb-4">
           <h1 className="text-3xl font-bold text-foreground">Check your email</h1>
           <p className="mt-1 text-muted-foreground">
-            We've sent you a verification link
+            We&apos;ve sent you a verification link
           </p>
         </div>
         <div className="mt-6 text-center bg-secondary p-5 rounded-md border border-border">
