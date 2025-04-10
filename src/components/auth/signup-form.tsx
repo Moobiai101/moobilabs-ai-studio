@@ -6,24 +6,24 @@ import { Label } from '@/components/ui/label'
 import { createClientSupabaseClient } from '@/lib/supabase/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import * as z from 'zod'
+import { z } from 'zod'
 
 const signupSchema = z.object({
-  fullName: z.string().min(3, 'Full name must be at least 3 characters'),
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
+  email: z.string().email({ message: 'Please enter a valid email address' }),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
+  fullName: z.string().min(2, { message: 'Full name must be at least 2 characters' }),
 })
 
 type SignupFormValues = z.infer<typeof signupSchema>
 
-export default function SignupForm() {
+export function SignupForm() {
   const [error, setError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [verifyEmailSent, setVerifyEmailSent] = useState(false)
-  const supabase = createClientSupabaseClient()
-
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [verifyEmailSent, setVerifyEmailSent] = useState<boolean>(false)
+  
   const {
     register,
     handleSubmit,
@@ -42,6 +42,7 @@ export default function SignupForm() {
     setError(null)
 
     try {
+      const supabase = createClientSupabaseClient()
       const { error } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
@@ -72,6 +73,7 @@ export default function SignupForm() {
     setError(null)
 
     try {
+      const supabase = createClientSupabaseClient()
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
@@ -96,7 +98,7 @@ export default function SignupForm() {
         <div className="text-center mb-4">
           <h1 className="text-3xl font-bold text-foreground">Check your email</h1>
           <p className="mt-1 text-muted-foreground">
-            We've sent you a verification link
+            We&apos;ve sent you a verification link
           </p>
         </div>
         <div className="mt-6 text-center bg-secondary p-5 rounded-md border border-border">
