@@ -1,5 +1,6 @@
 import { createServerSupabaseClient } from '@/lib/supabase/server'
 import { UserNav } from '@/components/dashboard/user-nav'
+import { Sidebar } from '@/components/dashboard/sidebar'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
