@@ -1,0 +1,80 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  darkMode: "class",
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: "#0070F3",
+          50: "#E6F0FF",
+          100: "#CCE0FF",
+          200: "#99C2FF",
+          300: "#66A3FF",
+          400: "#3385FF",
+          500: "#0070F3",
+          600: "#005BC2",
+          700: "#004592",
+          800: "#003061",
+          900: "#001830",
+        },
+        secondary: {
+          DEFAULT: "#171717",
+          50: "#F5F5F5",
+          100: "#E8E8E8",
+          200: "#C6C6C6",
+          300: "#A3A3A3",
+          400: "#818181",
+          500: "#666666",
+          600: "#4D4D4D",
+          700: "#333333",
+          800: "#262626",
+          900: "#171717",
+          950: "#0A0A0A",
+        },
+        accent: {
+          DEFAULT: "#ffffff",
+          50: "#ffffff",
+          100: "#fafafa",
+          200: "#f5f5f5",
+          300: "#e5e5e5",
+          400: "#d4d4d4",
+          500: "#a3a3a3",
+          600: "#737373",
+          700: "#525252",
+          800: "#404040",
+          900: "#262626",
+          950: "#171717",
+        },
+        background: {
+          DEFAULT: "#000000",
+          50: "#ffffff",
+          100: "#fafafa",
+          200: "#e5e5e5",
+          300: "#d4d4d4",
+          400: "#a3a3a3",
+          500: "#737373",
+          600: "#525252",
+          700: "#333333",
+          800: "#171717",
+          900: "#0a0a0a",
+          950: "#000000",
+        },
+      },
+      borderRadius: {
+        DEFAULT: '0.5rem',
+        'sm': '0.25rem',
+        'md': '0.5rem',
+        'lg': '0.75rem',
+        'xl': '1rem',
+      }
+    },
+  },
+  plugins: [],
+};
+export default config; 

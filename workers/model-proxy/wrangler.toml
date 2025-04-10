@@ -1,0 +1,13 @@
+name = "model-proxy"
+main = "index.js"
+compatibility_date = "2024-10-04"
+compatibility_flags = ["nodejs_compat"]
+
+# Secret environment variables for API keys
+# In production, you'd set these with:
+# wrangler secret put FAL_API_KEY
+# wrangler secret put RUNPOD_API_KEY
+[vars]
+# Example variables - replace with actual values in production
+FAL_API_KEY = ""
+RUNPOD_API_KEY = "" 

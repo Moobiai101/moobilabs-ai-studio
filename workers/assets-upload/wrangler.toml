@@ -1,0 +1,13 @@
+name = "assets-upload"
+main = "index.js"
+compatibility_date = "2024-10-04"
+compatibility_flags = ["nodejs_compat"]
+
+# R2 bucket for storing assets
+[[r2_buckets]]
+binding = 'ASSETS_BUCKET'
+bucket_name = 'ai-studio-assets'
+
+# Environment variables
+[vars]
+ASSET_BASE_URL = "https://assets.yourdomain.com" 

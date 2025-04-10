@@ -1,0 +1,14 @@
+name = "moobilabs-ai-studio"
+compatibility_date = "2024-10-04"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+# R2 bucket for storing AI-generated assets
+[[r2_buckets]]
+binding = 'ASSETS_BUCKET'
+bucket_name = 'ai-studio-assets'
+
+# R2 bucket for storing custom models
+[[r2_buckets]]
+binding = 'MODELS_BUCKET' 
+bucket_name = 'ai-studio-models'
