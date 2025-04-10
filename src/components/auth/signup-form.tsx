@@ -6,25 +6,24 @@ import { Label } from '@/components/ui/label'
 import { createClientSupabaseClient } from '@/lib/supabase/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import * as z from 'zod'
 
 const signupSchema = z.object({
-  email: z.string().email({ message: 'Please enter a valid email address' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
-  fullName: z.string().min(2, { message: 'Full name must be at least 2 characters' }),
+  fullName: z.string().min(3, 'Full name must be at least 3 characters'),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
 })
 
 type SignupFormValues = z.infer<typeof signupSchema>
 
-export function SignupForm() {
-  const router = useRouter()
+export default function SignupForm() {
   const [error, setError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [verifyEmailSent, setVerifyEmailSent] = useState<boolean>(false)
-  
+  const [isLoading, setIsLoading] = useState(false)
+  const [verifyEmailSent, setVerifyEmailSent] = useState(false)
+  const supabase = createClientSupabaseClient()
+
   const {
     register,
     handleSubmit,
@@ -43,7 +42,6 @@ export function SignupForm() {
     setError(null)
 
     try {
-      const supabase = createClientSupabaseClient()
       const { error } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
@@ -74,7 +72,6 @@ export function SignupForm() {
     setError(null)
 
     try {
-      const supabase = createClientSupabaseClient()
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
