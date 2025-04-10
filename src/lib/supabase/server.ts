@@ -15,6 +15,7 @@ export async function createServerSupabaseClient() {
         set(name: string, value: string, options: CookieOptions) {
           try {
             cookieStore.set(name, value, options)
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           } catch (_error) {
             // The set method will throw in middleware
           }
@@ -22,6 +23,7 @@ export async function createServerSupabaseClient() {
         remove(name: string, options: CookieOptions) {
           try {
             cookieStore.set(name, '', { ...options, maxAge: 0 })
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           } catch (_error) {
             // The delete method will throw in middleware
           }
